@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>gaming Gear Shop</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header trans_300">
+
+
+            <!-- Main Navigation -->
+
+            <div class="main_nav_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <div class="logo_container">
+                                <a href="index.html">gaming Gear
+
+                                </a>
+                            </div>
+                            <nav class="navbar">
+                                <ul class="navbar_menu">
+                                    <li>
+                                        <a href="index.html">home</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">categories</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">contact</a>
+                                    </li>
+                                </ul>
+                                <ul class="navbar_user">
+                                    <li>
+                                        <input onchange="filtersearch(this.value)" class="form-control mr-sm-2"
+                                            type="text" placeholder="Search">
+                                    </li>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <div class="catagories-menu">
+            <ul>
+                <li class=""><a onclick="catagory('ART_AND_DESIGN')">Art & Design</a></li>
+
+                <li><a a onclick="catagory('AUTO_AND_VEHICLES')">Auto And Vehicles</a></li>
+                <li><a a onclick="catagory('BEAUTY')">Beauty</a></li>
+                <li><a a onclick="catagory('BOOKS_AND_REFERENCE')">Books and Reference</a></li>
+                <li><a a onclick="catagory('BUSINESS')">Business</a></li>
+                <li><a a onclick="catagory('COMICS')">Comics</a></li>
+                <li><a a onclick="catagory('COMMUNICATION')">Communication</a></li>
+                <li><a a onclick="catagory('DATING')">Dating</a></li>
+                <li><a a onclick="catagory('EDUCATION')">Education</a></li>
+                <li><a a onclick="catagory('ENTERTAINMENT')">Entertainment</a></li>
+                <li><a a onclick="catagory('EVENTS')">Events</a></li>
+                <li><a a onclick="catagory('FINANCE')">Finance</a></li>
+                <li><a a onclick="catagory('FOOD_AND_DRINK')">Food And Drink</a></li>
+                <li><a a onclick="catagory('HEALTH_AND_FITNESS')">Health And Fitness</a></li>
+                <li><a a onclick="catagory('HOUSE_AND_HOME')">House And Home</a></li>
+                <li><a a onclick="catagory('LIBRARIES_AND_DEMO')">Libraries And Demo</a></li>
+                <li><a a onclick="catagory('LIFESTYLE')">Lifestyle</a></li>
+                <li><a a onclick="catagory('GAME')">Game</a></li>
+                <li><a a onclick="catagory('FAMILY')">Family</a></li>
+                <li><a a onclick="catagory('MEDICAL')">Medical</a></li>
+                <li><a a onclick="catagory('SOCIAL')">Social</a></li>
+                <li><a a onclick="catagory('SHOPPING')">Shopping</a></li>
+                <li><a a onclick="catagory('PHOTOGRAPHY')">Photography</a></li>
+                <li><a a onclick="catagory('SPORTS')">Sports</a></li>
+                <li><a a onclick="catagory('TRAVEL_AND_LOCAL')">Travel And Local</a></li>
+                <li><a a onclick="catagory('TOOLS')">Tools</a></li>
+                <li><a a onclick="catagory('PERSONALIZATION')">Personalization</a></li>
+                <li><a a onclick="catagory('PRODUCTIVITY')">Productivity</a></li>
+                <li><a a onclick="catagory('PARENTING')">Parenting</a></li>
+                <li><a a onclick="catagory('WEATHER')">Weather</a></li>
+                <li><a a onclick="catagory('VIDEO_PLAYERS')">Video Players</a></li>
+                <li><a a onclick="catagory('NEWS_AND_MAGAZINES')">News And Magaiznes</a></li>
+                <li><a a onclick="catagory('MAPS_AND_NAVIGATION')">Maps And Navigation</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <script>
+        function catagory(name) {
+            alert(name)
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'http://localhost:8080/category/' + name;
+            xmlhttp.open("Get", url, true);
+            var arr = [];
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    var result = xmlhttp.responseText;
+                    let jsResult = JSON.parse(result);
+                    console.log(jsResult);
+
+                    let html = '';
+                    for (var i = 0; i < 20; i++) {
+
+                        html +=
+                            ' <!-- Single Product Area -->' +
+                            " <div class='col-12 col-sm-6 col-md-12 col-xl-6' onclick='showreview(" + '"' + jsResult[i].app + '"' + "," + '"' + jsResult[i].installs + '"' + ")'>" +
+                            ' <div class="single-product-wrapper">' +
+                            '   <!-- Product Image -->' +
+                            '  <div class="product-img">' +
+                            '   <img src="img/product-img/app_store.png" alt="">' +
+                            '   <!-- Hover Thumb -->' +
+                            '   <img class="hover-img" src="img/product-img/attach-1539683418412.jpg" alt="">' +
+                            ' </div>' +
+
+                            ' <!-- Product Description -->' +
+                            ' <div class="product-description d-flex align-items-center justify-content-between">' +
+                            '  <!-- Product Meta Data -->' +
+                            '  <div class="product-meta-data">' +
+                            '  <div class="line"></div>' +
+                            '  <p class="product-price"> ' + jsResult[i].app + '</p>' +
+                            ' <h6>Rating:' + jsResult[i].rating + '</h6>' +
+                            '  <div class="ratings">' +
+                            '  <i class="fa fa-star" aria-hidden="true"></i>' +
+                            ' <i class="fa fa-star" aria-hidden="true"></i>' +
+                            ' <i class="fa fa-star" aria-hidden="true"></i>' +
+                            ' <i class="fa fa-star" aria-hidden="true"></i>' +
+                            '  <i class="fa fa-star" aria-hidden="true"></i>' +
+                            ' </div>' +
+                            '  <p class="tan">Category : ' + jsResult[i].category + '</p>' +
+                            '  <div class="line"></div>' +
+
+                            '    </div>' +
+
+
+                            ' </div>' +
+                            ' </div>' +
+                            ' </div>';
+
+
+                    }
+                    document.getElementById('Category').innerHTML = html;
+                }
+            }
+            xmlhttp.send();
+
+        }
+
+    </script>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="styles/bootstrap4/popper.js"></script>
+    <script src="styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="plugins/easing/easing.js"></script>
+    <script src="js/custom.js"></script>
+
+    <!-- Bootstrap CSS -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <!-- senzill-pagination.js -->
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <!-- senzill-pagination.js -->
+    <script src="https://cdn.jsdelivr.net/gh/yak0d3/senzill-pagination@1.1.3-beta/senzill-pagination.js"></script>
+
+</body>
+
+</html>
